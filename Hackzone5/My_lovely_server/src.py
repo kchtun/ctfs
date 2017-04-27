@@ -47,9 +47,7 @@ class ThreadedServer(object):
 
 	
  	def count_down(self,client,address):
-		i=20
-		
-		
+		i=3
 		while (i > 0):
 			
 			i = i - 1 
@@ -63,7 +61,7 @@ class ThreadedServer(object):
 		return string_val
 	def main_server(self,client, address):
 		client.send(u"Ok let's begin ! you have 3 seconds to find my secret \n")
-		i = 20
+		i = 3
 		key = self.generator()
 		print key
 		L=["sha256","sha1","md5"]
@@ -94,25 +92,9 @@ class ThreadedServer(object):
 			hash_key3 = md5(hash_key2).hexdigest()
 		print hash_key3
 		while 1:
-		
-			
-			
-				
-				
-				
-		
 			for char in hx:
-				
 				client.send (CODE[char.upper()]+" ",)
 			client.send( "\n")
-				
-				
-				
-				
-				
-				
-				
-
 			response = client.recv(255).strip()
 			print response
 			if (response == hash_key3) :
@@ -121,11 +103,6 @@ class ThreadedServer(object):
 					
 			elif (response != hash_key):
 				client.send( u"Failed\n")
-			
-			
-
-
-		
 if __name__ == "__main__":
 	port_num = input("Port? ")
 	ThreadedServer('',port_num).listen()
